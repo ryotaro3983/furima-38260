@@ -1,7 +1,7 @@
 class Item < ApplicationRecord
   validates :name       ,presence: true
   validates :text       ,presence: true
-  validates :price      ,presence: true
+  validates :price      ,presence: true, format: { with: /\A[0-9]+\z/}, numericality: { in: 300..9,999,999}
   
   with_options numericality: { other_than: 1 , message: "can't be blank"} do
     validates :category_id

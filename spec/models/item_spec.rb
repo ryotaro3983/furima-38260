@@ -44,7 +44,6 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include('Price is out of setting range')
       end
       it 'priceが10000000以上では登録できない' do
-        # メモ：本当はこう書きたいがうまく行かない @item.price = Faker::Number.between(from: 10000000) エラー文が違う
         @item.price = '10000000'
         @item.valid?
         expect(@item.errors.full_messages).to include('Price is out of setting range')

@@ -1,7 +1,6 @@
 class ItemsController < ApplicationController
   def index
-    # ↓一覧機能実装の段階でコメントアウトを外す！
-    # @items = Item.includes(:user).order('created_at DESC')
+    @items = Item.includes(:user).order('created_at DESC')
   end
 
   def new

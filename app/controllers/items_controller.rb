@@ -1,7 +1,8 @@
 class ItemsController < ApplicationController
+  before_action :authenticate_user!, only: [:new]
+  
   def index
-    # ↓一覧機能実装の段階でコメントアウトを外す！
-    # @items = Item.includes(:user).order('created_at DESC')
+    @items = Item.all.order('created_at DESC')
   end
 
   def new

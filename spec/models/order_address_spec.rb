@@ -77,8 +77,13 @@ RSpec.describe OrderAddress, type: :model do
         @order.valid?
         expect(@order.errors.full_messages).to include('Phone number is invalid. Input only number')
       end
-      it 'phone_numberが10桁以下では登録できない' do
-        @order.phone_number = '0901111222'
+      it 'phone_numberが9桁以下では登録できない' do
+        @order.phone_number = '090111222'
+        @order.valid?
+        expect(@order.errors.full_messages).to include('Phone number is too short')
+      end
+      it 'phone_numberが12桁以上では登録できない' do
+        @order.phone_number = '090111122223'
         @order.valid?
         expect(@order.errors.full_messages).to include('Phone number is too short')
       end

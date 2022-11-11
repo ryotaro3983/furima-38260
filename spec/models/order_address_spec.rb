@@ -40,12 +40,12 @@ RSpec.describe OrderAddress, type: :model do
       it 'postal_codeが数値のみだと登録できない' do
         @order.postal_code = '0000000'
         @order.valid?
-        expect(@order.errors.full_messages).to include("Postal code is invalid. Enter it as follows (e.g. 123-4567)")
+        expect(@order.errors.full_messages).to include('Postal code is invalid. Enter it as follows (e.g. 123-4567)')
       end
       it 'postal_codeの数値が全角だと登録できない' do
         @order.postal_code = '０００-００００'
         @order.valid?
-        expect(@order.errors.full_messages).to include("Postal code is invalid. Enter it as follows (e.g. 123-4567)")
+        expect(@order.errors.full_messages).to include('Postal code is invalid. Enter it as follows (e.g. 123-4567)')
       end
       it 'prefectureを選択していないと保存できない' do
         @order.prefecture_id = nil
@@ -71,21 +71,21 @@ RSpec.describe OrderAddress, type: :model do
         @order.phone_number = ''
         @order.valid?
         expect(@order.errors.full_messages).to include("Phone number can't be blank")
-      end 
+      end
       it 'phone_numberに数値以外が含まれると登録できない' do
         @order.phone_number = '090-1111-2222'
         @order.valid?
-        expect(@order.errors.full_messages).to include("Phone number is invalid. Input only number")
+        expect(@order.errors.full_messages).to include('Phone number is invalid. Input only number')
       end
       it 'phone_numberが10桁以下では登録できない' do
         @order.phone_number = '0901111222'
         @order.valid?
-        expect(@order.errors.full_messages).to include("Phone number is too short")
+        expect(@order.errors.full_messages).to include('Phone number is too short')
       end
       it 'phone_numberが半角数値以外だと登録できない' do
         @order.phone_number = '０９０１１１１２２２２'
         @order.valid?
-        expect(@order.errors.full_messages).to include("Phone number is invalid. Input only number")
+        expect(@order.errors.full_messages).to include('Phone number is invalid. Input only number')
       end
     end
   end

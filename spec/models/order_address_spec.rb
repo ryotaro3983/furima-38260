@@ -78,22 +78,22 @@ RSpec.describe OrderAddress, type: :model do
       it 'phone_numberに数値以外が含まれると登録できない' do
         @order.phone_number = '090-1111-2222'
         @order.valid?
-        expect(@order.errors.full_messages).to include('Phone number is invalid. Input only number')
+        expect(@order.errors.full_messages).to include('Phone number is invalid')
       end
       it 'phone_numberが9桁以下では登録できない' do
         @order.phone_number = '090111222'
         @order.valid?
-        expect(@order.errors.full_messages).to include('Phone number is too short')
+        expect(@order.errors.full_messages).to include('Phone number is invalid')
       end
       it 'phone_numberが12桁以上では登録できない' do
         @order.phone_number = '090111122223'
         @order.valid?
-        expect(@order.errors.full_messages).to include('Phone number is too short')
+        expect(@order.errors.full_messages).to include('Phone number is invalid')
       end
       it 'phone_numberが半角数値以外だと登録できない' do
         @order.phone_number = '０９０１１１１２２２２'
         @order.valid?
-        expect(@order.errors.full_messages).to include('Phone number is invalid. Input only number')
+        expect(@order.errors.full_messages).to include('Phone number is invalid')
       end
     end
   end
